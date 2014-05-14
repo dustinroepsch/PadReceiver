@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -14,7 +15,7 @@ public class SocketWorker {
     private Socket skt;
     Queue<Integer> backlog;
     public SocketWorker(Socket s){
-        backlog = (Queue<Integer>) new ArrayList<Integer>();
+        backlog =  (Queue<Integer>) new LinkedList<Integer>();
         skt = s;
         worker = new SwingWorker() {
             @Override
@@ -30,6 +31,7 @@ public class SocketWorker {
             ObjectInputStream inputStream = new ObjectInputStream(skt.getInputStream());
             while(true){
                 addBacklog((Integer) inputStream.readObject());
+                System.out.println("shouldbeworking");
                 System.out.println(backlog);
             }
 
