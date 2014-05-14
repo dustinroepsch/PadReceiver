@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Queue;
 
 /**
  * Created by Dustin on 5/14/14.
@@ -11,9 +12,9 @@ import java.util.ArrayList;
 public class SocketWorker {
     private SwingWorker worker;
     private Socket skt;
-    ArrayList<Integer> backlog;
+    Queue<Integer> backlog;
     public SocketWorker(Socket s){
-        backlog = new ArrayList<Integer>();
+        backlog = (Queue<Integer>) new ArrayList<Integer>();
         skt = s;
         worker = new SwingWorker() {
             @Override
@@ -45,10 +46,10 @@ public class SocketWorker {
     public synchronized void addBacklog(int s){
         backlog.add(s);
     }
-    public synchronized ArrayList<Integer> getBacklog(){
-        return backlog;
+    public synchronized Integer getPop(){
+        return backlog.poll();
     }
-    public synchronized void clearBacklog(){
-        backlog = new ArrayList<Integer>();
+    public boolean empty(){
+        return backlog.isEmpty();
     }
 }

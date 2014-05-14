@@ -49,11 +49,9 @@ public class Main extends JFrame {
     private void updateSocketWorkers() {
         while (true){
             for (SocketWorker e: workers){
-                ArrayList<Integer> temp = e.getBacklog();
-                for(Integer s: temp){
-                    robot.keyPress(s);
+                while(!e.empty()){
+                    robot.keyPress(e.getPop());
                 }
-                e.clearBacklog();
             }
         }
     }
