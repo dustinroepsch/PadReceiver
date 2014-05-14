@@ -49,7 +49,7 @@ public class SocketWorker {
     public synchronized Integer getPop(){
         return backlog.poll();
     }
-    public boolean empty(){
+    public synchronized boolean empty(){
         return backlog.isEmpty();
     }
 }

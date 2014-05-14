@@ -48,27 +48,38 @@ public class Main extends JFrame {
 
     private void updateSocketWorkers() {
         while (true){
-            for (SocketWorker e: workers){
-                while(!e.empty()){
-                    robot.keyPress(e.getPop());
+            for (int i = 0; i < getWorkerSize(); i = (i + 1)%getWorkerSize()){
+                while(!getWorker(i).empty()){
+                    robot.keyPress(getWorker(i).getPop());
                 }
             }
         }
+    }
+    private synchronized SocketWorker getWorker(int i){
+        return workers.get(i);
+    }
+    private synchronized void addWorker(SocketWorker skt){
+        workers.add(skt);
+    }
+    private synchronized int getWorkerSize(){
+        return workers.size();
     }
 
     private void mainLoop() {
         while(true){
             try {
                 Socket temp = serverSocket.accept();
-                workers.add(new SocketWorker(temp));
+                System.out.print("ex");
+                addWorker(new SocketWorker(temp));
                 connections++;
+                System.out.println("connections");
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
                         status.setText(connections + " Connected Users");
                     }
                 });
-                workers.get(workers.size()-1).execute();
+                getWorker(workers.size()-1).execute();
             } catch (IOException e) {
                 e.printStackTrace();
             }
