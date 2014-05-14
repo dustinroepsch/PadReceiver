@@ -92,8 +92,9 @@ public class Main extends JFrame {
                 main.setVisible(true);
             }
         });
-        main.executeWorker();
         main.startUpdater();
+        main.executeWorker();
+
     }
 
     private void startUpdater() {
