@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PadReceiver:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PadReceiver_jar</output-path>
+    <root id="archive" name="PadReceiver.jar">
+      <element id="module-output" name="PadReceiver" />
+    </root>
+  </artifact>
+</component>
