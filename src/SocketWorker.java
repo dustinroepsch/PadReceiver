@@ -31,8 +31,8 @@ public class SocketWorker {
             ObjectInputStream inputStream = new ObjectInputStream(skt.getInputStream());
             while(true){
                 addBacklog((Integer) inputStream.readObject());
-                System.out.println("shouldbeworking");
-                System.out.println(backlog);
+                //System.out.println("shouldbeworking");
+                //System.out.println(backlog);
             }
 
         } catch (IOException e) {

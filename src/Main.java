@@ -51,6 +51,7 @@ public class Main extends JFrame {
             for (int i = 0; i < getWorkerSize(); i = (i + 1)%getWorkerSize()){
                 while(!getWorker(i).empty()){
                     robot.keyPress(getWorker(i).getPop());
+                    System.out.println("typed");
                 }
             }
         }
