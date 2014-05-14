@@ -88,7 +88,8 @@ public class Main extends JFrame {
     }
 
     public void createGUI(){
-        setSize(new Dimension(150,100));
+        setSize(new Dimension(200,100));
+        setResizable(false);
         status = new JLabel(connections + " Connected Users");
         add(status);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
